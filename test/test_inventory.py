@@ -12,6 +12,7 @@ from config import config_for_login_page
 def inventory_page(request):
     firefox_options = FirefoxOptions()
     firefox_options.add_argument("--disable-notifications")
+    firefox_options.add_argument("--headless")
     firefox_options.set_preference("security.password_lifetime", 0)
     firefox_options.set_preference("signon.rememberSignons", False)
     firefox_options.set_preference("signon.autofillForms", False)
