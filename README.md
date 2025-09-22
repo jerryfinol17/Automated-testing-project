@@ -21,3 +21,19 @@ A beginner-friendly QA automation project demonstrating end-to-end (E2E) testing
 - **Browser**: Firefox (headless mode for CI-friendly runs).
 
 ## Project Structure
+Automated-testing-project/
+├── config/
+│   └── config_for_login_page.py     # Test credentials (standard_user, locked_out, etc.)
+├── pages/
+│   ├── login_page.py                # Login page actions (open, enter creds, logout)
+│   ├── inventory_page.py            # Inventory actions (add to cart, badge count)
+│   └── cart_page.py                 # Cart verification (get items, checkout button)
+├── tests/
+│   ├── test_login.py                # Login tests (success, errors)
+│   └── test_inventory.py            # Inventory and cart tests
+├── reports/                         # Generated HTML reports (run pytest to create)
+├── docs/                            # Screenshots and docs (e.g., report_screenshot.png)
+├── requirements.txt                 # Dependencies
+└── README.md                        # You're reading it!
+
+
