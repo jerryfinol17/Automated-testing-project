@@ -29,7 +29,7 @@ def inventory_page(request):
     return inventory_page
 
 def test_add_product_to_cart(inventory_page):
-        inventory_page.add_product_to_cart()
+        inventory_page.add_product("bike_light")
         badge_count = inventory_page.get_cart_badge_count()
         assert inventory_page.get_cart_badge_count() == "1"
         print(f"Badge count: {badge_count}")
@@ -39,6 +39,35 @@ def test_add_product_to_cart(inventory_page):
         assert "Sauce Labs Bike Light" in items, f"Expected 'Sauce Labs Bike Light' in cart, but got {items}"
         print(f"Items: {items}")
         assert cart_page.is_checkout_button_visible(), "Checkout button is not visible"
+
+
+def test_multi_add(inventory_page):
+    products = ["bike_light", "backpack", "fleece_jacket"]
+    inventory_page.add_multiple_products(products)
+    badge = int(inventory_page.get_cart_badge_count())
+    assert badge == 3
+
+@pytest.mark.parametrize("sort_option, expected_order", [("lohi", "asc"), ("hilo", "desc")])
+
+def test_sort_order(inventory_page, sort_option, expected_order):
+	prices_before = inventory_page.get_prices()
+	inventory_page.sort_by_price(sort_option)
+	prices_after = inventory_page.get_prices()
+	assert len(prices_after) == 6
+	expected_sorted = sorted(prices_before, reverse=(expected_order == "desc"))
+	assert prices_after == expected_sorted
+
+def test_get_prices(inventory_page):
+	prices = inventory_page.get_prices()
+	assert len(prices) == 6
+	assert all(isinstance(p, float) for p in prices)
+	assert min(prices) >0
+
+
+
+
+
+
 
 
 
