@@ -5,9 +5,11 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
 from pages.cart_page import CartPage
+from pages.checkout_page import CheckoutPage
 from webdriver_manager.firefox import GeckoDriverManager
 from config import config_for_login_page
 from config.config_for_cart_page import PRODUCTS
+import time
 
 @pytest.fixture(scope="function")
 def cart_page_with_items(request):
@@ -64,4 +66,21 @@ def test_start_checkout(cart_page_with_items):
     cart_page_with_items.start_checkout()
     assert "checkout-step-one.html" in cart_page_with_items.driver.current_url
     print(f"Current URL after checkout: {cart_page_with_items.driver.current_url}")
+
+@pytest.mark.parametrize("first_name, last_name, postal_code", [("Juanito", "Alimana", "1969"), ("Procura", "Peralta", "1997")])
+
+def test_full_e2e_checkout(cart_page_with_items, first_name, last_name, postal_code):
+        cart_page_with_items.start_checkout()
+        print(f"URL after start: {cart_page_with_items.driver.current_url}")
+        time.sleep(2)
+        assert "checkout-step-one.html" in cart_page_with_items.driver.current_url
+        time.sleep(1)  # Extra buffer for DOM
+        checkout = CheckoutPage(cart_page_with_items.driver)
+        checkout.fill_info(first_name, last_name, postal_code)
+        assert checkout.continue_to_overview() == True
+        assert "checkout-step-two.html" in checkout.driver.current_url
+        assert checkout.complete_checkout() == True
+        assert "checkout-complete.html" in checkout.driver.current_url
+        assert "Thank you for your order!" in checkout.driver.page_source
+        print(f"E2E complete with user {first_name} {last_name}, final URL: {checkout.driver.current_url}")
 
