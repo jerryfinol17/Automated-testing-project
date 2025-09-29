@@ -1,4 +1,5 @@
 import pytest
+import allure
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
@@ -43,19 +44,22 @@ def test_add_product_to_cart(inventory_page):
 
 def test_multi_add(inventory_page):
     products = ["bike_light", "backpack", "fleece_jacket"]
-    inventory_page.add_multiple_products(products)
-    badge = int(inventory_page.get_cart_badge_count())
-    assert badge == 3
+    with allure.step(f"Iniciar adición de {len(products)} productos al carrito"):
+        inventory_page.add_multiple_products(products)
 
+    with allure.step("Verificar badge del carrito actualizado"):
+        badge = int(inventory_page.get_cart_badge_count())
+        assert badge == 3
+        allure.attach(f"Badge final: {badge}", name="Badge Count", attachment_type=allure.attachment_type.TEXT)
 @pytest.mark.parametrize("sort_option, expected_order", [("lohi", "asc"), ("hilo", "desc")])
 
 def test_sort_order(inventory_page, sort_option, expected_order):
-	prices_before = inventory_page.get_prices()
-	inventory_page.sort_by_price(sort_option)
-	prices_after = inventory_page.get_prices()
-	assert len(prices_after) == 6
-	expected_sorted = sorted(prices_before, reverse=(expected_order == "desc"))
-	assert prices_after == expected_sorted
+    prices_before = inventory_page.get_prices()
+    inventory_page.sort_by_price(sort_option)
+    prices_after = inventory_page.get_prices()
+    assert len(prices_after) == 6
+    expected_sorted = sorted(prices_before, reverse=(expected_order == "desc"))
+    assert prices_after == expected_sorted
 
 def test_get_prices(inventory_page):
 	prices = inventory_page.get_prices()

@@ -1,4 +1,5 @@
 import pytest
+import allure
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
@@ -68,19 +69,29 @@ def test_start_checkout(cart_page_with_items):
     print(f"Current URL after checkout: {cart_page_with_items.driver.current_url}")
 
 @pytest.mark.parametrize("first_name, last_name, postal_code", [("Juanito", "Alimana", "1969"), ("Procura", "Peralta", "1997")])
-
 def test_full_e2e_checkout(cart_page_with_items, first_name, last_name, postal_code):
+    with allure.step("Iniciar checkout desde carrito"):
+        assert cart_page_with_items.is_checkout_button_visible() == True
         cart_page_with_items.start_checkout()
         print(f"URL after start: {cart_page_with_items.driver.current_url}")
         time.sleep(2)
         assert "checkout-step-one.html" in cart_page_with_items.driver.current_url
+
+    with allure.step(f"Llenar info de checkout con {first_name} {last_name}"):
         time.sleep(1)  # Extra buffer for DOM
         checkout = CheckoutPage(cart_page_with_items.driver)
         checkout.fill_info(first_name, last_name, postal_code)
+
+    with allure.step("Continuar a overview y verificar URL"):
         assert checkout.continue_to_overview() == True
         assert "checkout-step-two.html" in checkout.driver.current_url
+
+    with allure.step("Completar checkout y verificar éxito"):
         assert checkout.complete_checkout() == True
         assert "checkout-complete.html" in checkout.driver.current_url
         assert "Thank you for your order!" in checkout.driver.page_source
         print(f"E2E complete with user {first_name} {last_name}, final URL: {checkout.driver.current_url}")
+
+    allure.attach(cart_page_with_items.driver.get_screenshot_as_png(), name="Checkout Complete",
+                  attachment_type=allure.attachment_type.PNG)
 

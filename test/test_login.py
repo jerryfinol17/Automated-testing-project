@@ -1,4 +1,5 @@
 import pytest
+import allure
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
@@ -25,13 +26,21 @@ def login_page(request):
 
 
 def test_successful_login(login_page):
+    with allure.step("Abrir página de login"):
         login_page.open_page()
+
+    with allure.step("Ingresar username válido"):
         login_page.insert_user_name(config_for_login_page.CREDENTIALS["standard_user"]["username"])
+
+    with allure.step("Ingresar password válido"):
         login_page.insert_password(config_for_login_page.CREDENTIALS["standard_user"]["password"])
+
+    with allure.step("Hacer clic en login y verificar redirección"):
         login_page.click_login_button()
         assert login_page.driver.current_url == "https://www.saucedemo.com/inventory.html"
-        login_page.logout()
 
+    with allure.step("Cerrar sesión para cleanup"):
+        login_page.logout()
 
 def test_locked_out_user(login_page):
     login_page.open_page()
