@@ -1,0 +1,2 @@
+Product 'bike_light' removed, new badge: 1
+Product 'backpack' removed, new badge: 0
