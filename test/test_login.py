@@ -11,17 +11,9 @@ from config import config_for_login_page
 
 
 @pytest.fixture(scope="function")
-def login_page(request):
-    firefox_options = FirefoxOptions()
-    firefox_options.add_argument("--disable-notifications")
-    firefox_options.add_argument("--headless")
-    firefox_options.set_preference("security.password_lifetime", 0)
-    firefox_options.set_preference("signon.rememberSignons", False)
-    firefox_options.set_preference("signon.autofillForms", False)
-    firefox_options.set_preference("privacy.trackingprotection.enabled", True)
-    driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=firefox_options)
-    login_page = LoginPage(driver)
-    request.addfinalizer(driver.quit)
+def login_page(browser_driver, request):
+    login_page = LoginPage(browser_driver)
+    request.addfinalizer(browser_driver.quit)
     return login_page
 
 

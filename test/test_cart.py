@@ -13,26 +13,18 @@ from config.config_for_cart_page import PRODUCTS
 import time
 
 @pytest.fixture(scope="function")
-def cart_page_with_items(request):
-    firefox_options = FirefoxOptions()
-    firefox_options.add_argument("--disable-notifications")
-    firefox_options.add_argument("--headless")
-    firefox_options.set_preference("security.password_lifetime", 0)
-    firefox_options.set_preference("signon.rememberSignons", False)
-    firefox_options.set_preference("signon.autofillForms", False)
-    firefox_options.set_preference("privacy.trackingprotection.enabled", True)
-    driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=firefox_options)
-    login_page = LoginPage(driver)
+def cart_page_with_items(browser_driver, request):
+    login_page = LoginPage(browser_driver)
     login_page.open_page()
     login_page.insert_user_name(config_for_login_page.CREDENTIALS["standard_user"]["username"])
     login_page.insert_password(config_for_login_page.CREDENTIALS["standard_user"]["password"])
     login_page.click_login_button()
     assert login_page.driver.current_url == "https://www.saucedemo.com/inventory.html"
-    inventory = InventoryPage(driver)
+    inventory = InventoryPage(browser_driver)
     inventory.add_multiple_products(["bike_light", "backpack"])
     inventory.go_to_cart()
-    cart_page = CartPage(driver)
-    request.addfinalizer(driver.quit)
+    cart_page = CartPage(browser_driver)
+    request.addfinalizer(browser_driver.quit)
     return cart_page
 
 
