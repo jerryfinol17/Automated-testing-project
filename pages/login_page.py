@@ -47,8 +47,3 @@ class LoginPage:
         self.wait.until(EC.element_to_be_clickable(LoginPage.LOGOUT_BUTTON))
         self.driver.find_element(*LoginPage.LOGOUT_BUTTON).click()
         self.wait.until(EC.visibility_of_element_located(LoginPage.LOGIN_BUTTON))
-
-
-
-
-
