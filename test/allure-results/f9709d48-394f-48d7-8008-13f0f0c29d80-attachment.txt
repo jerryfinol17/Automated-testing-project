@@ -1,0 +1,1 @@
+Product 'bike_light' removed, new badge: 1

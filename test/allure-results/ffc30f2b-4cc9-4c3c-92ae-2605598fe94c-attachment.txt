@@ -1,0 +1,2 @@
+URL after start: https://www.saucedemo.com/checkout-step-one.html
+E2E complete with user Procura Peralta, final URL: https://www.saucedemo.com/checkout-complete.html

@@ -1,0 +1,2 @@
+Badge count: 1
+Items: ['Sauce Labs Bike Light']
