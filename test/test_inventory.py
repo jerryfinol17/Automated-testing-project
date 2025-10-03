@@ -1,5 +1,6 @@
 import pytest
 import allure
+import srt
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
@@ -58,3 +59,23 @@ def test_get_prices(inventory_page):
 	assert len(prices) == 6
 	assert all(isinstance(p, float) for p in prices)
 	assert min(prices) >0
+
+@pytest.mark.parametrize("viewport",[("desktop",1920,1080),("mobile",375,667)])
+@pytest.mark.responsive
+def test_add_item_responsive(inventory_page, viewport):
+    name,w,h = viewport
+    with allure.step(f"Resize a {name} viewport({w}x{h})"):
+        inventory_page.driver.set_window_size(w,h)
+    product_key = ('bike_light')
+    with allure.step(f"Check add button is visible on {name}"):
+        visible = inventory_page.is_add_button_visible(product_key)
+        assert visible, f"Not visible on {name}"
+        allure.attach(str(visible), name="Visibility Check", attachment_type=allure.attachment_type.TEXT)
+    with allure.step(f"add product {product_key}"):
+        inventory_page.add_product(product_key)
+    with allure.step("Check Badge=1"):
+        badge = inventory_page.get_cart_badge_count()
+        assert badge == "1",  f"Expected '1', got {badge} en {name}"
+        print(f"{name}: {badge}")
+        allure.attach(badge, name="Badge Count", attachment_type=allure.attachment_type.TEXT)
+
