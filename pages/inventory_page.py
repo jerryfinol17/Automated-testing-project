@@ -57,3 +57,11 @@ class InventoryPage:
             prices.append(price)
         return prices
 
+    def is_add_button_visible(self, product_key):
+        add_selector = PRODUCTS[product_key]["add"]
+        try:
+            add_button = self.wait.until(EC.visibility_of_element_located(add_selector))
+            return add_button.is_displayed()
+        except TimeoutException:
+            return False
+
