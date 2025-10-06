@@ -75,5 +75,5 @@ Questions? Open an issue.
 
 ![html report.png](docs/html%20report.png)
 ![Screenshot 2025-09-29 145456.png](docs/Screenshot%202025-09-29%20145456.png)
-Built by Jerry Finol | Last Updated: September 29, 2025
-
+Built by Jerry Finol | Last Updated: October 6, 2025
+https://github.com/jerryfinol17/Automated-testing-project/actions/runs/18293106423/artifacts/4196777875

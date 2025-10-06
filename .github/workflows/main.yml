@@ -40,7 +40,7 @@ jobs:
         with:
           name: allure-report
           path: allure-report/
-      - name: Run tests with HTML (optional, for backward compat)
+      - name: Run tests with HTML
         env:
           PYTHONPATH: .
         run: |
