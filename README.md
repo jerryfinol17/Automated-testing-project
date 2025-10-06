@@ -76,6 +76,4 @@ Questions? Open an issue.
 ![html report.png](docs/html%20report.png)
 ![Screenshot 2025-09-29 145456.png](docs/Screenshot%202025-09-29%20145456.png)
 Built by Jerry Finol | Last Updated: September 29, 2025
-[Coverage](https://codecov.io/gh/jerryfinol17/Automated-testing-project/branch/main/graph/badge.svg)
-
 

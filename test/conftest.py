@@ -6,6 +6,7 @@ from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 import allure
 
 
@@ -49,9 +50,7 @@ def browser_driver(request):
             options=firefox_options
         )
 
-
     elif browser_name == "edge":
-
         edge_options = EdgeOptions()
 
         edge_options.add_argument("--disable-notifications")
@@ -80,19 +79,9 @@ def browser_driver(request):
 
         edge_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 
-        # Ruta completa al .exe – ajusta si tu versión es diferente
-
-        driver_path = r"C:\Users\dhamyan\PycharmProjects\drivers\edgedriver_win64\msedgedriver.exe"
-
-        if not os.path.exists(driver_path):
-            raise FileNotFoundError(f"msedgedriver.exe no encontrado en {driver_path}. Verifica la extracción del ZIP.")
-
         driver = webdriver.Edge(
-
-            service=EdgeService(executable_path=driver_path),
-
+            service=EdgeService(EdgeChromiumDriverManager().install()),
             options=edge_options
-
         )
 
     def fin():

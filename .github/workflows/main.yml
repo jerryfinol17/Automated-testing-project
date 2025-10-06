@@ -8,7 +8,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Check out repository
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -18,10 +18,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest-cov  # Agregado para coverage
+          pip install pytest-cov  # Para coverage
+          pip install webdriver-manager  # Para ambos browsers (Firefox + Edge)
       - name: Install GeckoDriver
         run: |
-          python -m pip install webdriver-manager
+          python -m pip install webdriver-manager  # Ya cubierto arriba, pero legacy
       - name: Install Allure
         run: |
           wget https://github.com/allure-framework/allure2/releases/download/2.25.0/allure-2.25.0.zip
@@ -57,7 +58,7 @@ jobs:
         env:
           PYTHONPATH: .
         run: |
-          pytest test/ --cov=pages --cov-report=xml:coverage.xml --cov-report=html:htmlcov
+          pytest test/ --cov=pages --cov-report=xml:coverage.xml --cov-report=html:htmlcov -v
       - name: Upload Coverage HTML report
         uses: actions/upload-artifact@v4
         with:
