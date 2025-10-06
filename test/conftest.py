@@ -2,11 +2,9 @@ import pytest
 import os
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service as FirefoxService
-from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
 import allure
 
 
@@ -54,36 +52,21 @@ def browser_driver(request):
         edge_options = EdgeOptions()
 
         edge_options.add_argument("--disable-notifications")
-
         edge_options.add_argument("--disable-popup-blocking")
-
         edge_options.add_argument("--headless")
-
         edge_options.add_argument("--disable-blink-features=AutomationControlled")
-
         edge_options.add_argument("--no-sandbox")
-
         edge_options.add_argument("--disable-dev-shm-usage")
 
         prefs = {
-
             "profile.password_manager_enabled": False,
-
             "credentials_enable_service": False,
-
             "profile.default_content_setting_values.notifications": 2,
-
         }
 
         edge_options.add_experimental_option("prefs", prefs)
-
         edge_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-
-        driver = webdriver.Edge(
-            service=EdgeService(EdgeChromiumDriverManager().install()),
-            options=edge_options
-        )
-
+        driver = webdriver.Edge(options=edge_options)
     def fin():
         if driver:
             try:
