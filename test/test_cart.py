@@ -1,13 +1,9 @@
 import pytest
 import allure
-from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
-from webdriver_manager.firefox import GeckoDriverManager
 from config import config_for_login_page
 from config.config_for_cart_page import PRODUCTS
 import time

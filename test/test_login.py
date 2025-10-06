@@ -1,10 +1,6 @@
 import pytest
 import allure
-from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from pages.login_page import LoginPage
-from webdriver_manager.firefox import GeckoDriverManager
 from config import config_for_login_page
 
 #realiza pruebas a diario, y escribe codigo para mejorar.
