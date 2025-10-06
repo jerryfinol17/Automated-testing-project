@@ -1,10 +1,8 @@
 import pytest
 import os
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
-from webdriver_manager.firefox import GeckoDriverManager
 import allure
 
 
@@ -43,10 +41,7 @@ def browser_driver(request):
         firefox_options.set_preference("privacy.trackingprotection.enabled", True)
         firefox_options.set_preference("dom.disable_open_during_load", True)
         firefox_options.page_load_strategy = 'normal'
-        driver = webdriver.Firefox(
-            service=FirefoxService(GeckoDriverManager().install()),
-            options=firefox_options
-        )
+        driver = webdriver.Firefox(options=firefox_options)
 
     elif browser_name == "edge":
         edge_options = EdgeOptions()
@@ -66,7 +61,9 @@ def browser_driver(request):
 
         edge_options.add_experimental_option("prefs", prefs)
         edge_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+
         driver = webdriver.Edge(options=edge_options)
+
     def fin():
         if driver:
             try:
