@@ -19,10 +19,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest-cov  # Para coverage
-          pip install webdriver-manager  # Para ambos browsers (Firefox + Edge)
-      - name: Install GeckoDriver
-        run: |
-          python -m pip install webdriver-manager  # Ya cubierto arriba, pero legacy
+          pip install webdriver-manager  # Para browsers si lo usas aún
       - name: Install Allure
         run: |
           wget https://github.com/allure-framework/allure2/releases/download/2.25.0/allure-2.25.0.zip
@@ -65,7 +62,8 @@ jobs:
           name: coverage-html-report
           path: htmlcov/
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           file: ./coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
