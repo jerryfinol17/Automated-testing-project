@@ -18,6 +18,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pytest-cov  # Agregado para coverage
       - name: Install GeckoDriver
         run: |
           python -m pip install webdriver-manager
@@ -52,3 +53,18 @@ jobs:
         with:
           name: html-report
           path: reports/report.html
+      - name: Run tests with Coverage
+        env:
+          PYTHONPATH: .
+        run: |
+          pytest test/ --cov=pages --cov-report=xml:coverage.xml --cov-report=html:htmlcov
+      - name: Upload Coverage HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html-report
+          path: htmlcov/
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+          fail_ci_if_error: true
