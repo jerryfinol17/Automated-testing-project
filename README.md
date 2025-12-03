@@ -13,11 +13,20 @@ Scalability: Easy to extend with more browsers, APIs, or mobile emulation.
 
 
 ## Tech Stack
-Languages/Tools: Python 3.9+, Selenium WebDriver, Pytest, WebDriver Manager.
-Reporting: Pytest-HTML (basic logs) + Allure (interactive dashboards with steps, timelines, and screenshots).
-Design Pattern: Page Object Model (POM) for clean separation of locators, actions, and config.
-CI/CD: GitHub Actions for automated runs on push/PR, with report artifacts.
-Other: Data-driven testing via @pytest.mark.parametrize, explicit waits for stability.
+## Languages/Tools:
+-  Python 3.9+
+-  Selenium WebDriver
+-   Pytest
+-    WebDriver Manager
+## Reporting:
+- Pytest-HTML (basic logs) 
+- Allure (interactive dashboards with steps, timelines, and screenshots).
+## Design Pattern:
+-Page Object Model (POM) for clean separation of locators, actions, and config.
+## CI/CD:
+-GitHub Actions for automated runs on push/PR, with report artifacts.
+## Other:
+- Data-driven testing via @pytest.mark.parametrize, explicit waits for stability.
 
 automated-testing-project/
 ├── config/
@@ -40,28 +49,40 @@ automated-testing-project/
 ├── requirements.txt                 # Dependencies (selenium, pytest, allure-pytest, etc.)
 ├── .github/workflows/ci.yml         # GitHub Actions for CI/CD
 └── README.md                        # You're reading it!
-Quick StartClone the Repo:
 
-git clone https://github.com/your-username/automated-testing-project.git
-cd automated-testing-project
+## Quick StartClone the Repo:
 
-Install Dependencies:
+- git clone https://github.com/your-username/automated-testing-project.git
+- cd automated-testing-project
+- Install Dependencies:
+- pip install -r requirements.txt
+- Run Tests:All tests: pytest tests/ -v
+- With HTML report: pytest tests/ --html=reports/report.html --self-contained-html -v
+- With Allure: pytest tests/ --alluredir=allure-results -v then allure serve allure-results
+## Specific test:
+- pytest tests/test_cart.py::test_full_e2e_checkout -v
+- Cross-browser (if marked): pytest -m cross_browser -v
 
-pip install -r requirements.txt
-
-Run Tests:All tests: pytest tests/ -v
-With HTML report: pytest tests/ --html=reports/report.html --self-contained-html -v
-With Allure: pytest tests/ --alluredir=allure-results -v then allure serve allure-results
-Specific test: pytest tests/test_cart.py::test_full_e2e_checkout -v
-Cross-browser (if marked): pytest -m cross_browser -v
-
-View Reports:HTML: Open reports/report.html in your browser for logs and pass/fail summaries.
-HTML Report Example
-Allure: Run allure serve allure-results for an interactive dashboard (timelines, steps, attachments). Example screenshot:
-Allure Dashboard
-Tests CoveredLogin (test_login.py): Successful login, locked-out user, invalid credentials, empty username (4 tests).
-Inventory (test_inventory.py): Add single product to cart, multi-add products, sort by price (lo-hi/hi-lo), validate prices (4 tests).
-Cart & E2E (test_cart.py): Verify cart items/badge, remove single/all items, start checkout, full E2E checkout (parametrized with user data) (4+ tests).
+## View Reports:
+:HTML: Open reports/report.html in your browser for logs and pass/fail summaries.
+- HTML Report Example
+- Allure: Run allure serve allure-results for an interactive dashboard (timelines, steps, attachments). Example screenshot:
+- Allure Dashboard
+## Tests CoveredLogin (test_login.py):
+- Successful login
+- Locked-out user
+- Invalid credentials
+- Empty username (4 tests).
+## Inventory (test_inventory.py):
+- Add single product to cart
+- Multi-add products
+- Sort by price (lo-hi/hi-lo)
+- Validate prices (4 tests).
+## Cart & E2E (test_cart.py):
+- Verify cart items/badge
+- Remove single/all items
+- Start checkout
+- Full E2E checkout (parametrized with user data) (4+ tests).
 
 All tests include asserts for URLs, elements, text, and edge cases. Data-driven for efficiency (e.g., multiple products/usernames).
 
