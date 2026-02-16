@@ -63,7 +63,6 @@ def browser_driver(request):
         edge_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 
         driver = webdriver.Edge(options=edge_options)
-
     def fin():
         if driver:
             try:
