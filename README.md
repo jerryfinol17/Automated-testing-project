@@ -60,8 +60,14 @@ Allure dashboard: steps, screenshots, failure reasons — perfect for sharing wi
 ![Screenshot 2025-09-29 145456.png](docs/Screenshot%202025-09-29%20145456.png)
 
 ### Why this Framework stands out
-Classic Selenium (enterprise staple) + modern Allure reporting = combo que muchas compañías pagan bien. Listo para escalar a tu proyecto real.Open for freelance/contract QA roles (Selenium/Playwright/Python/API/CI).  → DM @GordoRelig3d
+Classic Selenium (enterprise staple) + modern Allure reporting = combo que muchas compañías pagan bien. Listo para escalar a tu proyecto real.Open for freelance/contract QA roles (Selenium/Playwright/Python/API/CI). 
 
-→ Email: jerrytareas17@gmail.com¡Tests green, reports stunning!
+**Open for freelance/contract QA Automation roles** (Selenium • Playwright • Python • API • CI/CD).  
+
+→ DM me on X [@GordoRelig3d](https://x.com/GordoRelig3d)  
+→ Email: jerrytareas17@gmail.com
+
+¡Tests green, reports stunning! 🏆
+
 
 Built by Jerry Finol | Last Updated: March 20, 2026
