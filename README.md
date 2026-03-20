@@ -56,8 +56,7 @@ Download Allure/HTML artifacts from Actions tab after runs.
 Allure dashboard: steps, screenshots, failure reasons — perfect for sharing with PMs/devs.
 (Agrega screenshot de Allure si podés: sube uno a docs/ y enlaza: Allure Sample)
 
-![html report.png](docs/html%20report.png)
-![Screenshot 2025-09-29 145456.png](docs/Screenshot%202025-09-29%20145456.png)
+![img.png](docs/img.png)
 
 ### Why this Framework stands out
 Classic Selenium (enterprise staple) + modern Allure reporting = combo que muchas compañías pagan bien. Listo para escalar a tu proyecto real.Open for freelance/contract QA roles (Selenium/Playwright/Python/API/CI).  → DM @GordoRelig3d
