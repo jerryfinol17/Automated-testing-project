@@ -63,6 +63,7 @@ Classic Selenium (enterprise staple) + modern Allure reporting = combo que mucha
 
 **Open for freelance/contract QA Automation roles** (Selenium • Playwright • Python • API • CI/CD).  
 
+![img.png](docs/img.png)
 → DM me on X [@GordoRelig3d](https://x.com/GordoRelig3d)  
 → Email: jerrytareas17@gmail.com
 
