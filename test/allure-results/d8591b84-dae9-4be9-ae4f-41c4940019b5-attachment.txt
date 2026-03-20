@@ -1,1 +1,0 @@
-Items: ['Sauce Labs Bike Light', 'Sauce Labs Backpack'], Badge: 2

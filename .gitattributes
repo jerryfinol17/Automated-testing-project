@@ -1,0 +1,4 @@
+*.html linguist-generated=true
+allure-report/* linguist-generated=true
+reports/* linguist-generated=true
+allure-results/* linguist-generated=true

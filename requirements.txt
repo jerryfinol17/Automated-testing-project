@@ -1,5 +1,6 @@
-selenium==4.35.0
-pytest==8.4.2
+selenium==4.38.0
+pytest==9.0.1
 pytest-html==4.1.1
-allure-pytest== 2.15.0
+allure-pytest== 2.15.2
 pytest-cov== 7.0.0
+pytest-xdist == 3.8.0
