@@ -27,8 +27,8 @@ PRODUCTS = {
         "display_name": "Sauce Labs Bolt T-Shirt"
     },
     "red_tshirt": {
-        "add": (By.ID, "add-to-cart-tests.allthethings()-t-shirt-(red)"),
-        "remove": (By.ID, "remove-tests.allthethings()-t-shirt-(red)"),
+        "add": (By.ID, "add-to-cart-test.allthethings()-t-shirt-(red)"),
+        "remove": (By.ID, "remove-test.allthethings()-t-shirt-(red)"),
         "display_name": "Test.allTheThings() T-Shirt (Red)"
     }
 }

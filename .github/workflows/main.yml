@@ -26,7 +26,7 @@ jobs:
           unzip allure-2.25.0.zip
           export PATH=$PATH:$(pwd)/allure-2.25.0/bin
           echo "PATH=$PATH" >> $GITHUB_ENV
-      - name: Run tests with Allure
+      - name: Run test with Allure
         env:
           PYTHONPATH: .
         run: |
@@ -40,18 +40,18 @@ jobs:
         with:
           name: allure-report
           path: allure-report/
-      - name: Run tests with HTML
+      - name: Run test with HTML
         env:
           PYTHONPATH: .
         run: |
           mkdir -p reports
           pytest tests/ --html=reports/report.html --self-contained-html
-      - name: Upload HTML tests report
+      - name: Upload HTML test report
         uses: actions/upload-artifact@v4
         with:
           name: html-report
           path: reports/report.html
-      - name: Run tests with Coverage
+      - name: Run test with Coverage
         env:
           PYTHONPATH: .
         run: |

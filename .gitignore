@@ -43,6 +43,7 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+test/test
 
 # Selenium / WebDriver specific
 geckodriver.log

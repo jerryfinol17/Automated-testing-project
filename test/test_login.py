@@ -21,7 +21,7 @@ def test_successful_login(login_page):
     with allure.step("Verificar redirección exitosa al inventory"):
         assert login_page.driver.current_url == "https://www.saucedemo.com/inventory.html"
 
-    with allure.step("Cerrar sesión para limpieza del tests"):
+    with allure.step("Cerrar sesión para limpieza del test"):
         login_page.logout()
 
 

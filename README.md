@@ -27,7 +27,7 @@ Demonstrates key skills companies seek: stable Selenium automation, beautiful st
 Automated-testing-project/
 ├── config/               # Credentials & locators per page
 ├── pages/                # POM core (login, inventory, cart, checkout)
-├── tests/                 # Test suites (login, inventory, cart/E2E)
+├── test/                 # Test suites (login, inventory, cart/E2E)
 ├── reports/              # Pytest-HTML reports
 ├── allure-results/       # Raw Allure data
 ├── allure-report/        # Generated Allure dashboard
@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 ### Run Tests:
 ```bash
-pytest tests/ -v                               # Full suite
+pytest test/ -v                               # Full suite
 pytest --alluredir=allure-results -v          # With Allure
 allure serve allure-results/                  # Open interactive report
 ```
