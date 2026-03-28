@@ -1,6 +1,6 @@
 import pytest
 import allure
-from pages.login_page import LoginPage
+from pages.Login_Page import LoginPage
 from config import config_for_login_page
 
 
@@ -15,19 +15,13 @@ def test_successful_login(login_page):
     with allure.step("Abrir página de login"):
         login_page.open_page()
 
-    with allure.step("Ingresar username válido (standard_user)"):
-        login_page.insert_user_name(config_for_login_page.CREDENTIALS["standard_user"]["username"])
-
-    with allure.step("Ingresar password válido"):
-        login_page.insert_password(config_for_login_page.CREDENTIALS["standard_user"]["password"])
-
-    with allure.step("Hacer clic en el botón Login"):
-        login_page.click_login_button()
+    with allure.step("Login con  username válido (standard_user)"):
+        login_page.login(config_for_login_page.CREDENTIALS["standard_user"]["username"], config_for_login_page.CREDENTIALS["standard_user"]["password"])
 
     with allure.step("Verificar redirección exitosa al inventory"):
         assert login_page.driver.current_url == "https://www.saucedemo.com/inventory.html"
 
-    with allure.step("Cerrar sesión para limpieza del test"):
+    with allure.step("Cerrar sesión para limpieza del tests"):
         login_page.logout()
 
 
@@ -35,12 +29,8 @@ def test_locked_out_user(login_page):
     with allure.step("Abrir página de login"):
         login_page.open_page()
 
-    with allure.step("Ingresar credenciales de usuario bloqueado"):
-        login_page.insert_user_name(config_for_login_page.CREDENTIALS["locked_out_user"]["username"])
-        login_page.insert_password(config_for_login_page.CREDENTIALS["locked_out_user"]["password"])
-
-    with allure.step("Intentar hacer login"):
-        login_page.click_login_button()
+    with allure.step("Login con credenciales de usuario bloqueado"):
+        login_page.login(config_for_login_page.CREDENTIALS["locked_out_user"]["username"],config_for_login_page.CREDENTIALS["locked_out_user"]["password"])
 
     with allure.step("Obtener mensaje de error"):
         error_message = login_page.get_error_message()
@@ -54,13 +44,8 @@ def test_invalid_user(login_page):
     with allure.step("Abrir página de login"):
         login_page.open_page()
 
-    with allure.step("Ingresar credenciales inválidas"):
-        login_page.insert_user_name(config_for_login_page.CREDENTIALS["invalid_user"]["username"])
-        login_page.insert_password(config_for_login_page.CREDENTIALS["invalid_user"]["password"])
-
-    with allure.step("Intentar hacer login"):
-        login_page.click_login_button()
-
+    with allure.step("Login con  credenciales inválidas"):
+        login_page.login(config_for_login_page.CREDENTIALS["invalid_user"]["username"],config_for_login_page.CREDENTIALS["invalid_user"]["password"])
     with allure.step("Obtener mensaje de error"):
         error_message = login_page.get_error_message()
         print(f"error_message: {error_message}")
@@ -74,11 +59,8 @@ def test_empty_user(login_page):
         login_page.open_page()
 
     with allure.step("Dejar campos vacíos (o usar credenciales vacías del config)"):
-        login_page.insert_user_name(config_for_login_page.CREDENTIALS["empty_user"]["username"])
-        login_page.insert_password(config_for_login_page.CREDENTIALS["empty_user"]["password"])
+        login_page.login(config_for_login_page.CREDENTIALS["empty_user"]["username"],config_for_login_page.CREDENTIALS["empty_user"]["password"])
 
-    with allure.step("Intentar hacer login sin usuario"):
-        login_page.click_login_button()
 
     with allure.step("Obtener mensaje de error"):
         error_message = login_page.get_error_message()

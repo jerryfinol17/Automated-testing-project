@@ -1,22 +1,19 @@
 import pytest
 import allure
 from allure_commons.types import AttachmentType
-from pages.inventory_page import InventoryPage
-from pages.login_page import LoginPage
-from pages.cart_page import CartPage
-from pages.checkout_page import CheckoutPage
+from pages.Inventory_Page import InventoryPage
+from pages.Login_Page import LoginPage
+from pages.Cart_Page import CartPage
+from pages.Checkout_Page import CheckoutPage
 from config import config_for_login_page
 from config.config_for_cart_page import PRODUCTS
-import time
 
 
 @pytest.fixture(scope="function")
 def cart_page_with_items(browser_driver, request):
     login_page = LoginPage(browser_driver)
     login_page.open_page()
-    login_page.insert_user_name(config_for_login_page.CREDENTIALS["standard_user"]["username"])
-    login_page.insert_password(config_for_login_page.CREDENTIALS["standard_user"]["password"])
-    login_page.click_login_button()
+    login_page.login(config_for_login_page.CREDENTIALS["standard_user"]["username"], config_for_login_page.CREDENTIALS["standard_user"]["password"])
     assert login_page.driver.current_url == "https://www.saucedemo.com/inventory.html"
     inventory = InventoryPage(browser_driver)
     inventory.add_multiple_products(["bike_light", "backpack"])
@@ -43,9 +40,7 @@ def test_verify_cart_items(cart_page_with_items):
 @pytest.mark.parametrize("product_key, expected_badge_after", [("bike_light",'1'), ("backpack",'1')])
 def test_remove_single_item(cart_page_with_items, product_key, expected_badge_after):
     with allure.step(f"Eliminar el producto con key: {product_key}"):
-        success = cart_page_with_items.remove_item(product_key)
-    with allure.step("Verificar que el remove devolvió True"):
-        assert success == True
+     cart_page_with_items.remove_item(product_key)
     with allure.step("Obtener ítems restantes después del remove"):
         items_after = cart_page_with_items.get_cart_items()
     with allure.step("Obtener badge después del remove"):

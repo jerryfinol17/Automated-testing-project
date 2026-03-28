@@ -1,9 +1,9 @@
 import pytest
 import allure
 from allure_commons.types import AttachmentType
-from pages.inventory_page import InventoryPage
-from pages.login_page import LoginPage
-from pages.cart_page import CartPage
+from pages.Inventory_Page import InventoryPage
+from pages.Login_Page import LoginPage
+from pages.Cart_Page import CartPage
 from config import config_for_login_page
 
 
@@ -12,11 +12,8 @@ def inventory_page(browser_driver, request):
     login_page = LoginPage(browser_driver)
     with allure.step("Abrir página de login"):
         login_page.open_page()
-    with allure.step("Ingresar credenciales de standard_user"):
-        login_page.insert_user_name(config_for_login_page.CREDENTIALS["standard_user"]["username"])
-        login_page.insert_password(config_for_login_page.CREDENTIALS["standard_user"]["password"])
-    with allure.step("Hacer click en Login"):
-        login_page.click_login_button()
+    with allure.step("Login con credenciales de standard_user"):
+        login_page.login(config_for_login_page.CREDENTIALS["standard_user"]["username"],config_for_login_page.CREDENTIALS["standard_user"]["password"])
     with allure.step("Verificar redirección al inventory"):
         assert login_page.driver.current_url == "https://www.saucedemo.com/inventory.html"
     inventory_page = InventoryPage(browser_driver)

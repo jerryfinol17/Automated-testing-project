@@ -46,7 +46,7 @@ jobs:
         run: |
           mkdir -p reports
           pytest test/ --html=reports/report.html --self-contained-html
-      - name: Upload HTML test report
+      - name: Upload HTML tests report
         uses: actions/upload-artifact@v4
         with:
           name: html-report

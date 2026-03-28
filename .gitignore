@@ -1,0 +1,50 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Coverage reports
+.coverage
+coverage.xml
+htmlcov/
+.coverage.*
+coverage/
+
+# Test reports and artifacts
+reports/
+allure-results/
+allure-report/
+screenshots/
+junit/
+pytest_report/
+
+# PyTest
+.pytest_cache/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Selenium / WebDriver specific
+geckodriver.log
+msedgedriver.log
+chromedriver.log
