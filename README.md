@@ -1,46 +1,60 @@
-# 🛡️ Selenium + Pytest SauceDemo E2E Framework with Allure
+# Selenium + Python + POM Framework
+**Production-Ready E2E Automation Framework with Allure | SauceDemo**
 
-[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Selenium](https://img.shields.io/badge/Selenium-4.0+-43B02A?style=for-the-badge&logo=selenium&logoColor=white)](https://www.selenium.dev/)
-[![Pytest](https://img.shields.io/badge/pytest-7.0+-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org/)
-[![Allure](https://img.shields.io/badge/Allure-2.0+-FF0000?style=for-the-badge&logo=allure&logoColor=white)](https://allurereport.org/)
-[![CI](https://img.shields.io/badge/CI-Passing-brightgreen?style=for-the-badge&logo=github)](https://github.com/jerryfinol17/Automated-testing-project/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)](https://www.selenium.dev)
+[![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org)
+[![Allure](https://img.shields.io/badge/Allure-FF0000?style=for-the-badge&logo=allure&logoColor=white)](https://allure.report)
+[![GitHub Actions](https://github.com/jerryfinol17/selenium-python-saucedemo-pom-framework/actions/workflows/main.yml/badge.svg)](https://github.com/jerryfinol17/selenium-python-saucedemo-pom-framework/actions)
+[![Coverage](https://img.shields.io/badge/Coverage-76.5%25-yellow?style=for-the-badge)](https://github.com/jerryfinol17/selenium-python-saucedemo-pom-framework)
 
-**Enterprise-ready End-to-End automation framework** for SauceDemo using **Selenium WebDriver**, **pytest**, **Page Object Model** and **Allure reporting** — with rich interactive dashboards, screenshots, timelines and CI/CD artifacts.
+A clean, maintainable **End-to-End automation framework** built with **Selenium + Python + Page Object Model (POM)** and **Allure Reporting**.
 
-Demonstrates key skills companies seek: stable Selenium automation, beautiful stakeholder reports (Allure), maintainable POM, data-driven tests, cross-browser, and automated pipelines.
+Designed with production standards in mind: reusable components, centralized configuration, beautiful reporting, and CI/CD ready.
 
-### ✨ Key Highlights
-- ✅ Full **Page Object Model** (dedicated pages + config modules)
-- ✅ Cross-browser (Chrome & Firefox via WebDriver Manager)
-- ✅ All SauceDemo users & edge cases (locked-out, invalid creds, empty fields)
-- ✅ Comprehensive flows: login, inventory (add/multi/sort/price validation), cart (consistency/remove), full parametrized checkout E2E
-- ✅ **Allure reporting** — steps, attachments, timelines, screenshots, failure details
-- ✅ Pytest-HTML fallback + auto artifacts in CI
-- ✅ GitHub Actions CI (runs on push/PR, green status, reports downloadable)
-- ✅ Data-driven with `@pytest.mark.parametrize`
+---
 
-### 📁 Project Structure
+### ✨ Key Features
 
-```bash 
-Automated-testing-project/
-├── config/               # Credentials & locators per page
-├── pages/                # POM core (login, inventory, cart, checkout)
-├── test/                 # Test suites (login, inventory, cart/E2E)
-├── reports/              # Pytest-HTML reports
-├── allure-results/       # Raw Allure data
-├── allure-report/        # Generated Allure dashboard
-├── docs/                 # Screenshots & extras
-├── .github/workflows/    # CI pipeline (main.yml)
-└── requirements.txt
+- **Page Object Model** with reusable `BasePage` class
+- Centralized locators and configuration
+- Cross-browser testing (Firefox + Edge)
+- **Allure Reporting** with automatic screenshots on failure
+- Data-driven tests (positive + negative scenarios)
+- CI/CD pipeline with GitHub Actions
+
+---
+
+### 🏗️ Project Structure
+
+```bash
+selenium-python-saucedemo-pom-framework/
+├── pages/           # Page Objects (BasePage, LoginPage, InventoryPage...)
+├── test/            # Test suites
+├── config/          # Locators and configuration
+├── screenshots/     # Automatic failure screenshots
+├── allure-results/  # Allure raw data
+├── .github/workflows/ # CI/CD pipeline
+├── requirements.txt
+└── conftest.py
 ```
 
 ### 🚀 Quick Start
 ```bash
-git clone https://github.com/jerryfinol17/Automated-testing-project.git
-cd Automated-testing-project
+git clone https://github.com/jerryfinol17/selenium-python-saucedemo-pom-framework.git
+cd selenium-python-saucedemo-pom-framework
+
+# Virtual environment
+python -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+
 pip install -r requirements.txt
+
+# Run tests
+pytest -q
+
+# Generate and open Allure report
+allure serve allure-results
 ```
 
 ### Run Tests:
@@ -50,23 +64,27 @@ pytest --alluredir=allure-results -v          # With Allure
 allure serve allure-results/                  # Open interactive report
 ```
 
-### CI Reports:
-Download Allure/HTML artifacts from Actions tab after runs.
-### Reporting Demo
-Allure dashboard: steps, screenshots, failure reasons — perfect for sharing with PMs/devs.
-(Agrega screenshot de Allure si podés: sube uno a docs/ y enlaza: Allure Sample)
+###  Reporting 
+**Allure Report**: Rich interactive dashboards with steps, timelines and screenshots
+**Screenshots**: Automatically captured on test failure
+**Coverage**: 76.5%
 
-![img.png](docs/img.png)
+### Why This Framework?
+This repository showcases my ability to build structured and maintainable Selenium frameworks using modern practices (POM, Allure reporting, and clean architecture).It complements my **Playwright** frameworks (Python & TypeScript) and demonstrates versatility across the two most used automation tools.
 
-### Why this Framework stands out
-Classic Selenium (enterprise staple) + modern Allure reporting = combo que muchas compañías pagan bien. Listo para escalar a tu proyecto real.Open for freelance/contract QA roles (Selenium/Playwright/Python/API/CI). 
+###   Services I Offer:
+**QA Automation Enginee**r specialized in building production-ready frameworks.
+Available services:Playwright frameworks (Python & TypeScript)
+Selenium + Python frameworks
+Migration from Selenium to Playwright
+CI/CD integration + Allure reporting
 
-**Open for freelance/contract QA Automation roles** (Selenium • Playwright • Python • API • CI/CD).  
+Looking for a custom automation framework for your project?
+Contact me → **jerrytareas17@gmail.com (mailto:jerrytareas17@gmail.com)**
 
-→ DM me on X [@GordoRelig3d](https://x.com/GordoRelig3d)  
-→ Email: jerrytareas17@gmail.com
+Star  the repository if you find it useful!
 
-¡Tests green, reports stunning! 🏆
+Made with  for the QA Automation community.
 
 
-Built by Jerry Finol | Last Updated: March 20, 2026
+
