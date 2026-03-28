@@ -90,7 +90,8 @@ def test_full_e2e_checkout(cart_page_with_items, first_name, last_name, postal_c
     with allure.step("Finalizar la compra"):
         assert checkout.complete_checkout() == True
         assert "checkout-complete.html" in checkout.driver.current_url
-        assert "Thank you for your order!" in checkout.driver.page_source
+        assert "Thank you for your order!" in checkout.get_complete_header_text()
+        assert checkout.is_complete_header_visible() == True
         print(f"E2E complete with user {first_name} {last_name}, final URL: {checkout.driver.current_url}")
 
     allure.attach(cart_page_with_items.driver.get_screenshot_as_png(), name="Checkout Complete",

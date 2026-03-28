@@ -11,10 +11,11 @@ def login_page(browser_driver, request):
     return login_page
 
 
-def test_successful_login(login_page):
+def test_successful_login_and_logout(login_page):
     with allure.step("Abrir página de login"):
         login_page.open_page()
-
+    with allure.step("Verificar que esta en la pagina de login"):
+        assert login_page.get_current_url() == "https://www.saucedemo.com/"
     with allure.step("Login con  username válido (standard_user)"):
         login_page.login(config_for_login_page.CREDENTIALS["standard_user"]["username"], config_for_login_page.CREDENTIALS["standard_user"]["password"])
 
@@ -23,6 +24,8 @@ def test_successful_login(login_page):
 
     with allure.step("Cerrar sesión para limpieza del test"):
         login_page.logout()
+    with allure.step("Verificar que el logout a traves del boton de login"):
+        assert login_page.is_login_button_visible() == True
 
 
 def test_locked_out_user(login_page):

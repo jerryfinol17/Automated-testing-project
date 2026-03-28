@@ -33,7 +33,7 @@ def browser_driver(request):
 
     if browser_name == "firefox":
         options = FirefoxOptions ()
-        options.add_argument ("--headless")
+        options.add_argument ("--headed")
         options.add_argument ("--disable-notifications")
         options.add_argument ("--disable-gpu")
         options.page_load_strategy = "normal"
