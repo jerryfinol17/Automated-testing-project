@@ -8,10 +8,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         name: Check out repository
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install dependencies
@@ -20,6 +20,14 @@ jobs:
           pip install -r requirements.txt
           pip install pytest-cov 
           pip install webdriver-manager
+          
+      - name: Install Microsoft Edge
+        run: |
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
+          sudo apt-get update
+          sudo apt-get install -y microsoft-edge-stable
+          
       - name: Install Allure
         run: |
           wget https://github.com/allure-framework/allure2/releases/download/2.25.0/allure-2.25.0.zip
