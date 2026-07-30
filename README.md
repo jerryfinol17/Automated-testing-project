@@ -80,7 +80,7 @@ Migration from Selenium to Playwright
 CI/CD integration + Allure reporting
 
 Looking for a custom automation framework for your project?
-Contact me → **jerrytareas17@gmail.com (mailto:jerrytareas17@gmail.com)**
+[Contact me](mailto:jerrytest124@gmail.com)
 
 Star  the repository if you find it useful!
 
